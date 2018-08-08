@@ -8,7 +8,6 @@ public class Movie {
     public String category;
 
     public Movie(){
-        id = 0;
     }
     public Movie(long id, String name, String director, String category){
         this.id =id;

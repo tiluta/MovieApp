@@ -37,32 +37,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void saveMovie(Movie movie){
-        movie.setId(counter.incrementAndGet());
+    public void create(Movie movie){
         movies.add(movie);
 
     }
 
     @Override
-    public Movie findByName(String name) {
-        for(Movie movie: movies){
-            if(movie.getName().equalsIgnoreCase(name)){
-                return movie;
-            }
-        }
-        return  null;
-    }
-
-    @Override
-    public boolean isMovieExist(Movie movie) {
-        return findByName(movie.getName())!=null;
-    }
-
-    @Override
-    public void updateExistentMovie(Movie movie){
+    public void update(Movie movie){
         Movie movieToBeUpdated = findById(movie.getId());
-        if(movie.getId()!= 0)
-        {
+        if(movieToBeUpdated != null) {
             movieToBeUpdated.setName(movie.getName());
             movieToBeUpdated.setDirector(movie.getDirector());
             movieToBeUpdated.setCategory(movie.getCategory());
@@ -71,7 +54,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void deleteExistentMovie(Movie movie){
+    public void delete(Movie movie){
         Movie movieToBeDeleted = findById(movie.getId());
         movies.remove(movieToBeDeleted);
 
